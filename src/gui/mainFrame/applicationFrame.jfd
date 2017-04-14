@@ -1,0 +1,95 @@
+JFDML JFormDesigner: "6.0.0.0.84" Java: "1.8.0_112-release" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundleName": "messageBundle"
+	"i18n.keyPrefix": "applicationFrame"
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {space :0:963:x}"
+			"$verticalGroup": "par l {space :0:529:x}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 3
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "projectMenu"
+					"text": new FormMessage( null, "applicationFrame.projectMenu.text" )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "createProjectMenuItem"
+						"text": new FormMessage( null, "applicationFrame.createProjectMenuItem.text" )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "openProjectMenuItem"
+						"text": new FormMessage( null, "applicationFrame.openProjectMenuItem.text" )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "manageProjectsMenuItem"
+						"text": new FormMessage( null, "applicationFrame.manageProjectsMenuItem.text" )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "taskMenu"
+					"text": new FormMessage( null, "applicationFrame.taskMenu.text" )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "createTaskMenuItem"
+						"text": new FormMessage( null, "applicationFrame.createTaskMenuItem.text" )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "manageTasksMenuItem"
+						"text": new FormMessage( null, "applicationFrame.manageTasksMenuItem.text" )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "teamMenu"
+					"text": new FormMessage( null, "applicationFrame.teamMenu.text" )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "createTeamMenuItem"
+						"text": new FormMessage( null, "applicationFrame.createTeamMenuItem.text" )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "manageTeamsMenuItem"
+						"text": new FormMessage( null, "applicationFrame.manageTeamsMenuItem.text" )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "timesheetMenu"
+					"text": new FormMessage( null, "applicationFrame.timesheetMenu.text" )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "settingsMenu"
+					"text": new FormMessage( null, "applicationFrame.settingsMenu.text" )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "generalSettingsMenuItem"
+						"text": new FormMessage( null, "applicationFrame.generalSettingsMenuItem.text" )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "networkingSettingsMenuItem"
+						"text": new FormMessage( null, "applicationFrame.networkingSettingsMenuItem.text" )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "helpMenu"
+					"text": new FormMessage( null, "applicationFrame.helpMenu.text" )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "aboutHelpMenuItem"
+						"text": new FormMessage( null, "applicationFrame.aboutHelpMenuItem.text" )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "licenseHelpMenuItem"
+						"text": new FormMessage( null, "applicationFrame.licenseHelpMenuItem.text" )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "developmentHelpMenuItem"
+						"text": new FormMessage( null, "applicationFrame.developmentHelpMenuItem.text" )
+					} )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 965, 585 )
+		} )
+	}
+}
