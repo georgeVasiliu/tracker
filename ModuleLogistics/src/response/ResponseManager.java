@@ -15,7 +15,7 @@ public class ResponseManager {
         System.out.println("Checking receiver!");
 
         for (Receiver receiver : receivers) {
-            if (receiver.getType().equalsIgnoreCase(typeOfReceiver)) {
+            if (receiver.getReceiverType().equalsIgnoreCase(typeOfReceiver)) {
                 dispatcher.addReceiver(receiver);
             }
         }
@@ -26,7 +26,7 @@ public class ResponseManager {
         System.out.println("Checking dispatcher!");
 
         for (Dispatcher dispatcher : dispatchers) {
-            if (dispatcher.getTypeOfReceiver().equalsIgnoreCase(receiver.getType())) {
+            if (dispatcher.getTypeOfReceiver().equalsIgnoreCase(receiver.getReceiverType())) {
                 dispatcher.addReceiver(receiver);
             }
         }

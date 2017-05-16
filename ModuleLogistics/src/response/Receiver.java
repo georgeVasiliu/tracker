@@ -6,5 +6,6 @@ package response;
 public interface Receiver {
 
     void update(Response response);
-    String getType();
+
+    String getReceiverType();
  }
