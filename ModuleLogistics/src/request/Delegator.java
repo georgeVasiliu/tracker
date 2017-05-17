@@ -10,7 +10,7 @@ public class Delegator extends RequestHandler {
 
     private Delegator(){
         this.requestType = RequestType.BASE;
-        setNextHandler(LoginHandler.getLoginHandler());
+        setNextHandler(NetworkHandler.getNetworkHandler());
     }
 
     public static Delegator getDelegator(){
