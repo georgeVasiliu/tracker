@@ -3,8 +3,8 @@ package task;
 import history.History;
 import member.Member;
 import notifier.Notifier;
-import objective.Objective;
 
+import javax.swing.*;
 import java.util.Date;
 import java.util.List;
 
@@ -12,107 +12,106 @@ import java.util.List;
  * Created by george on 5/17/17.
  */
 public class Task {
+    private String title;
+    private String description;
+    private ImageIcon imageIcon;
+    private String status;
+    private List<Task> dependencyList;
+    private List<Member> workers;
 
-    private String taskTitle;
-    private String taskDescription;
-    private String taskStatus;
-
-    public String getTaskTitle() {
-        return taskTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTaskTitle(String taskTitle) {
-        this.taskTitle = taskTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getTaskDescription() {
-        return taskDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getTaskStatus() {
-        return taskStatus;
+    public ImageIcon getImageIcon() {
+        return imageIcon;
     }
 
-    public void setTaskStatus(String taskStatus) {
-        this.taskStatus = taskStatus;
+    public void setImageIcon(ImageIcon imageIcon) {
+        this.imageIcon = imageIcon;
     }
 
-    public List<Task> getRelatedTasks() {
-        return relatedTasks;
+    public String getStatus() {
+        return status;
     }
 
-    public void setRelatedTasks(List<Task> relatedTasks) {
-        this.relatedTasks = relatedTasks;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public Objective getParentObjective() {
-        return parentObjective;
+    public List<Task> getDependencyList() {
+        return dependencyList;
     }
 
-    public void setParentObjective(Objective parentObjective) {
-        this.parentObjective = parentObjective;
+    public void setDependencyList(List<Task> dependencyList) {
+        this.dependencyList = dependencyList;
     }
 
-    public List<Member> getMembers() {
-        return members;
+    public List<Member> getWorkers() {
+        return workers;
     }
 
-    public void setMembers(List<Member> members) {
-        this.members = members;
+    public void setWorkers(List<Member> workers) {
+        this.workers = workers;
     }
 
-    public String getTaskComments() {
-        return taskComments;
+    public String getComments() {
+        return comments;
     }
 
-    public void setTaskComments(String taskComments) {
-        this.taskComments = taskComments;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
-    public List<Notifier> getTaskNotifications() {
-        return taskNotifications;
+    public List<Notifier> getNotifierList() {
+        return notifierList;
     }
 
-    public void setTaskNotifications(List<Notifier> taskNotifications) {
-        this.taskNotifications = taskNotifications;
+    public void setNotifierList(List<Notifier> notifierList) {
+        this.notifierList = notifierList;
     }
 
-    public List<Task> getChildTasks() {
-        return childTasks;
+    public List<Task> getChilds() {
+        return childs;
     }
 
-    public void setChildTasks(List<Task> childTasks) {
-        this.childTasks = childTasks;
+    public void setChilds(List<Task> childs) {
+        this.childs = childs;
     }
 
-    public Task getParentTask() {
-        return parentTask;
+    public Task getParent() {
+        return parent;
     }
 
-    public void setParentTask(Task parentTask) {
-        this.parentTask = parentTask;
+    public void setParent(Task parent) {
+        this.parent = parent;
     }
 
-    public Date getTaskDeadline() {
-        return taskDeadline;
+    public Date getDeadline() {
+        return deadline;
     }
 
-    public void setTaskDeadline(Date taskDeadline) {
-        this.taskDeadline = taskDeadline;
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
     }
 
-    private List<Task> relatedTasks;
-    private Objective parentObjective;
-    private List<Member> members;
-    private String taskComments;
-    private List<Notifier> taskNotifications;
-    private History taskHistory;
-    private List<Task> childTasks;
-    private Task parentTask;
-    private Date taskDeadline;
+    private String comments;
+    private List<Notifier> notifierList;
+    private History history;
+    private List<Task> childs;
+    private Task parent;
+    private Date deadline;
 
 }
