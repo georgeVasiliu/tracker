@@ -9,68 +9,77 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "this"
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {comp contentPanel::l:::x, seq t {space ::374:x, comp panelButtons:::p::p, space :::p}}"
+				"$verticalGroup": "par l {seq l {comp contentPanel:::::x, space :::p, comp panelButtons:::p::p}}"
+			} ) {
 				name: "dialogPane"
 				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :p:245:p, par t {comp checkBoxLocalAccount::t:p::p, par l:t::p {comp panelLogin:::p::p, seq l {par l {seq {comp labelPassword:::p::p, space :p:22:p}, seq t {comp labelUsername:::p::p, space s:::p}}, par l {comp textFieldUsername:::::x, comp textFieldPassword:::::x}}}}, space ::190:x}, seq l {space :::p, comp panelBottom:::::x, space :::p}}"
-					"$verticalGroup": "par l {seq l {space :::p, comp panelLogin:::p::p, space s:::p, par t {comp textFieldUsername:::p::p, comp labelUsername:::p::p}, space s:::p, par l {comp textFieldPassword::t:p::p, comp labelPassword::t:p::p}, space :p:82:p, comp checkBoxLocalAccount:::p::p, space :::x, comp panelBottom:::p::p, space :p:4:p}}"
+					"$horizontalGroup": "par l {seq {space :::p, par l {comp panelLoginImage:::::x, comp panelCentral:::::x}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp panelLoginImage:::p::p, space s:::p, comp panelCentral:::::x, space :::p}}"
 				} ) {
 					name: "contentPanel"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {comp labelLogin::l::409:x}"
+						"$horizontalGroup": "par l {seq l {space :::p, comp labelLogin::::620:x, space :::p}}"
 						"$verticalGroup": "par l {seq l {space :::p, comp labelLogin::::88:x, space :::p}}"
 					} ) {
-						name: "panelLogin"
+						name: "panelLoginImage"
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "labelLogin"
 							"text": new FormMessage( null, "Login.labelLogin.text" )
 							"horizontalAlignment": 0
-							"background": new java.awt.Color( 44, 81, 106, 255 )
 						} )
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "labelUsername"
-						"text": new FormMessage( null, "Login.labelUsername.text" )
-					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textFieldUsername"
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "labelPassword"
-						"text": new FormMessage( null, "Login.labelPassword.text" )
-					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textFieldPassword"
-					} )
-					add( new FormComponent( "javax.swing.JCheckBox" ) {
-						name: "checkBoxLocalAccount"
-						"text": new FormMessage( null, "Login.checkBoxLocalAccount.text" )
 					} )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq t {space ::486:x, comp buttonLogin:::p::p, space s:::p, comp buttonQuit:::p::p, space :p:187:p}}"
-						"$verticalGroup": "par l {seq l {space :::p, par b {comp buttonLogin::b:p::p, comp buttonQuit::b:p::p}, space ::53:x}}"
+						"$horizontalGroup": "par l {seq l {space :p:137:p, par t {comp checkBoxOfflineAccount:::p::p, seq {par l {comp labelPassword::l:p::p, comp labelUsername::l:p::p}, space s:::p, par l:::p {comp textFieldPassword::::197:x, comp textFieldUsername::::197:x}}}, space ::207:x}}"
+						"$verticalGroup": "par l {seq l {space :p:14:p, par b {comp labelUsername::b:p::p, comp textFieldUsername::b:p::p}, space :p:26:p, par b {comp labelPassword::b:p::p, comp textFieldPassword::b:p::p}, space u:::p, comp checkBoxOfflineAccount:::p::p, space ::7:x}}"
 					} ) {
-						name: "panelBottom"
-						add( new FormComponent( "javax.swing.JButton" ) {
-							name: "buttonLogin"
-							"text": new FormMessage( null, "Login.buttonLogin.text" )
-							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonLoginMouseClicked", true ) )
+						name: "panelCentral"
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "labelUsername"
+							"text": new FormMessage( null, "Login.labelUsername.text" )
 						} )
-						add( new FormComponent( "javax.swing.JButton" ) {
-							name: "buttonQuit"
-							"text": new FormMessage( null, "Login.buttonQuit.text" )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "labelPassword"
+							"text": new FormMessage( null, "Login.labelPassword.text" )
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "textFieldUsername"
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "textFieldPassword"
+						} )
+						add( new FormComponent( "javax.swing.JCheckBox" ) {
+							name: "checkBoxOfflineAccount"
+							"text": new FormMessage( null, "Login.checkBoxOfflineAccount.text" )
 						} )
 					} )
-				}, new FormLayoutConstraints( class java.lang.String ) {
-					"value": "North"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {space :::p, comp okButton:::p:80:p, space :::p, comp cancelButton:::p:80:p, space :::p, comp helpButton:::p:80:p, space :::p}}"
+					"$verticalGroup": "par l {seq {space :::p, par b {comp helpButton::b:p::p, comp cancelButton::b:p::p, comp okButton::b:p::p}, space :::p}}"
+				} ) {
+					name: "panelButtons"
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "helpButton"
+						"text": new FormMessage( null, "Login.helpButton.text" )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "cancelButton"
+						"text": new FormMessage( null, "Login.cancelButton.text" )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "okButton"
+						"text": new FormMessage( null, "Login.okButton.text" )
+					} )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 696, 384 )
+			"location": new java.awt.Point( 80, 10 )
+			"size": new java.awt.Dimension( 670, 380 )
 		} )
 	}
 }

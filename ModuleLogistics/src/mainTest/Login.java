@@ -1,55 +1,21 @@
 /*
- * Created by JFormDesigner on Tue May 16 23:07:44 EEST 2017
+ * Created by JFormDesigner on Wed May 17 08:47:52 EEST 2017
  */
 
 package mainTest;
 
-import command.network.LoginCommand;
-import request.Delegator;
-import request.RequestHandler;
-import response.Receiver;
-import response.Response;
-import response.ResponseManager;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ResourceBundle;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.GroupLayout;
+import javax.swing.border.*;
 
 /**
- * @author Vasiliu George-Stef
+ * @author Vasiliu George
  */
-public class Login extends JFrame implements Receiver {
-    private static final String receiverType = "login";
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Vasiliu George
-    private JPanel dialogPane;
-    private JPanel contentPanel;
-    private JPanel panelLogin;
-    private JLabel labelLogin;
-    private JLabel labelUsername;
-    private JTextField textFieldUsername;
-    private JLabel labelPassword;
-    private JTextField textFieldPassword;
-    private JCheckBox checkBoxLocalAccount;
-    private JPanel panelBottom;
-    private JButton buttonLogin;
-    private JButton buttonQuit;
-
+public class Login extends JFrame {
     public Login() {
         initComponents();
-        setResizable(false);
-        ResponseManager.addReceiver(this);
-    }
-
-    private void buttonLoginMouseClicked(MouseEvent e) {
-        String username = textFieldUsername.getText();
-        String password = textFieldPassword.getText();
-        int accountType = checkBoxLocalAccount.isSelected() ? 1 : 0;
-        Delegator.getDelegator().sendRequest(RequestHandler.RequestType.LOGIN, new LoginCommand(username, password, accountType));
     }
 
     private void initComponents() {
@@ -58,16 +24,18 @@ public class Login extends JFrame implements Receiver {
         ResourceBundle bundle = ResourceBundle.getBundle("resources.guiText");
         dialogPane = new JPanel();
         contentPanel = new JPanel();
-        panelLogin = new JPanel();
+        panelLoginImage = new JPanel();
         labelLogin = new JLabel();
+        panelCentral = new JPanel();
         labelUsername = new JLabel();
-        textFieldUsername = new JTextField();
         labelPassword = new JLabel();
+        textFieldUsername = new JTextField();
         textFieldPassword = new JTextField();
-        checkBoxLocalAccount = new JCheckBox();
-        panelBottom = new JPanel();
-        buttonLogin = new JButton();
-        buttonQuit = new JButton();
+        checkBoxOfflineAccount = new JCheckBox();
+        panelButtons = new JPanel();
+        helpButton = new JButton();
+        cancelButton = new JButton();
+        okButton = new JButton();
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -79,136 +47,163 @@ public class Login extends JFrame implements Receiver {
 
             // JFormDesigner evaluation mark
             dialogPane.setBorder(new javax.swing.border.CompoundBorder(
-                    new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                            "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                            javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                            java.awt.Color.red), dialogPane.getBorder()));
-            dialogPane.addPropertyChangeListener(e -> {
-                if ("border".equals(e.getPropertyName())) throw new RuntimeException();
-            });
+                new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                    "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                    javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                    java.awt.Color.red), dialogPane.getBorder())); dialogPane.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
-            dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
             {
 
-                //======== panelLogin ========
+                //======== panelLoginImage ========
                 {
 
                     //---- labelLogin ----
                     labelLogin.setText(bundle.getString("Login.labelLogin.text"));
                     labelLogin.setHorizontalAlignment(SwingConstants.CENTER);
-                    labelLogin.setBackground(new Color(44, 81, 106));
 
-                    GroupLayout panelLoginLayout = new GroupLayout(panelLogin);
-                    panelLogin.setLayout(panelLoginLayout);
-                    panelLoginLayout.setHorizontalGroup(
-                            panelLoginLayout.createParallelGroup()
-                                    .addComponent(labelLogin, GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                    GroupLayout panelLoginImageLayout = new GroupLayout(panelLoginImage);
+                    panelLoginImage.setLayout(panelLoginImageLayout);
+                    panelLoginImageLayout.setHorizontalGroup(
+                        panelLoginImageLayout.createParallelGroup()
+                            .addGroup(panelLoginImageLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(labelLogin, GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                                .addContainerGap())
                     );
-                    panelLoginLayout.setVerticalGroup(
-                            panelLoginLayout.createParallelGroup()
-                                    .addGroup(panelLoginLayout.createSequentialGroup()
-                                            .addContainerGap()
-                                            .addComponent(labelLogin, GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                                            .addContainerGap())
+                    panelLoginImageLayout.setVerticalGroup(
+                        panelLoginImageLayout.createParallelGroup()
+                            .addGroup(panelLoginImageLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(labelLogin, GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                                .addContainerGap())
                     );
                 }
 
-                //---- labelUsername ----
-                labelUsername.setText(bundle.getString("Login.labelUsername.text"));
-
-                //---- labelPassword ----
-                labelPassword.setText(bundle.getString("Login.labelPassword.text"));
-
-                //---- checkBoxLocalAccount ----
-                checkBoxLocalAccount.setText(bundle.getString("Login.checkBoxLocalAccount.text"));
-
-                //======== panelBottom ========
+                //======== panelCentral ========
                 {
 
-                    //---- buttonLogin ----
-                    buttonLogin.setText(bundle.getString("Login.buttonLogin.text"));
-                    buttonLogin.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            buttonLoginMouseClicked(e);
-                        }
-                    });
+                    //---- labelUsername ----
+                    labelUsername.setText(bundle.getString("Login.labelUsername.text"));
 
-                    //---- buttonQuit ----
-                    buttonQuit.setText(bundle.getString("Login.buttonQuit.text"));
+                    //---- labelPassword ----
+                    labelPassword.setText(bundle.getString("Login.labelPassword.text"));
 
-                    GroupLayout panelBottomLayout = new GroupLayout(panelBottom);
-                    panelBottom.setLayout(panelBottomLayout);
-                    panelBottomLayout.setHorizontalGroup(
-                            panelBottomLayout.createParallelGroup()
-                                    .addGroup(GroupLayout.Alignment.TRAILING, panelBottomLayout.createSequentialGroup()
-                                            .addContainerGap(486, Short.MAX_VALUE)
-                                            .addComponent(buttonLogin)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(buttonQuit)
-                                            .addGap(187, 187, 187))
+                    //---- checkBoxOfflineAccount ----
+                    checkBoxOfflineAccount.setText(bundle.getString("Login.checkBoxOfflineAccount.text"));
+
+                    GroupLayout panelCentralLayout = new GroupLayout(panelCentral);
+                    panelCentral.setLayout(panelCentralLayout);
+                    panelCentralLayout.setHorizontalGroup(
+                        panelCentralLayout.createParallelGroup()
+                            .addGroup(panelCentralLayout.createSequentialGroup()
+                                .addGap(137, 137, 137)
+                                .addGroup(panelCentralLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addComponent(checkBoxOfflineAccount)
+                                    .addGroup(panelCentralLayout.createSequentialGroup()
+                                        .addGroup(panelCentralLayout.createParallelGroup()
+                                            .addComponent(labelPassword)
+                                            .addComponent(labelUsername))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(panelCentralLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(textFieldPassword, GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                                            .addComponent(textFieldUsername, GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))))
+                                .addContainerGap(207, Short.MAX_VALUE))
                     );
-                    panelBottomLayout.setVerticalGroup(
-                            panelBottomLayout.createParallelGroup()
-                                    .addGroup(panelBottomLayout.createSequentialGroup()
-                                            .addContainerGap()
-                                            .addGroup(panelBottomLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(buttonLogin)
-                                                    .addComponent(buttonQuit))
-                                            .addContainerGap(53, Short.MAX_VALUE))
+                    panelCentralLayout.setVerticalGroup(
+                        panelCentralLayout.createParallelGroup()
+                            .addGroup(panelCentralLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addGroup(panelCentralLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(labelUsername)
+                                    .addComponent(textFieldUsername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addGroup(panelCentralLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(labelPassword)
+                                    .addComponent(textFieldPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(checkBoxOfflineAccount)
+                                .addContainerGap(7, Short.MAX_VALUE))
                     );
                 }
 
                 GroupLayout contentPanelLayout = new GroupLayout(contentPanel);
                 contentPanel.setLayout(contentPanelLayout);
                 contentPanelLayout.setHorizontalGroup(
-                        contentPanelLayout.createParallelGroup()
-                                .addGroup(contentPanelLayout.createSequentialGroup()
-                                        .addGap(245, 245, 245)
-                                        .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                                .addComponent(checkBoxLocalAccount)
-                                                .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(panelLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(contentPanelLayout.createSequentialGroup()
-                                                                .addGroup(contentPanelLayout.createParallelGroup()
-                                                                        .addGroup(contentPanelLayout.createSequentialGroup()
-                                                                                .addComponent(labelPassword)
-                                                                                .addGap(22, 22, 22))
-                                                                        .addGroup(GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
-                                                                                .addComponent(labelUsername)
-                                                                                .addGap(18, 18, 18)))
-                                                                .addGroup(contentPanelLayout.createParallelGroup()
-                                                                        .addComponent(textFieldUsername)
-                                                                        .addComponent(textFieldPassword)))))
-                                        .addContainerGap(190, Short.MAX_VALUE))
-                                .addGroup(contentPanelLayout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(panelBottom, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addContainerGap())
+                    contentPanelLayout.createParallelGroup()
+                        .addGroup(contentPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(contentPanelLayout.createParallelGroup()
+                                .addComponent(panelLoginImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(panelCentral, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addContainerGap())
                 );
                 contentPanelLayout.setVerticalGroup(
-                        contentPanelLayout.createParallelGroup()
-                                .addGroup(contentPanelLayout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(panelLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                                .addComponent(textFieldUsername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(labelUsername))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(contentPanelLayout.createParallelGroup()
-                                                .addComponent(textFieldPassword, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(labelPassword, GroupLayout.Alignment.TRAILING))
-                                        .addGap(82, 82, 82)
-                                        .addComponent(checkBoxLocalAccount)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(panelBottom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(4, 4, 4))
+                    contentPanelLayout.createParallelGroup()
+                        .addGroup(contentPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(panelLoginImage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(panelCentral, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addContainerGap())
                 );
             }
-            dialogPane.add(contentPanel, BorderLayout.NORTH);
+
+            //======== panelButtons ========
+            {
+
+                //---- helpButton ----
+                helpButton.setText(bundle.getString("Login.helpButton.text"));
+
+                //---- cancelButton ----
+                cancelButton.setText(bundle.getString("Login.cancelButton.text"));
+
+                //---- okButton ----
+                okButton.setText(bundle.getString("Login.okButton.text"));
+
+                GroupLayout panelButtonsLayout = new GroupLayout(panelButtons);
+                panelButtons.setLayout(panelButtonsLayout);
+                panelButtonsLayout.setHorizontalGroup(
+                    panelButtonsLayout.createParallelGroup()
+                        .addGroup(panelButtonsLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(okButton, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(helpButton, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap())
+                );
+                panelButtonsLayout.setVerticalGroup(
+                    panelButtonsLayout.createParallelGroup()
+                        .addGroup(panelButtonsLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(panelButtonsLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(helpButton)
+                                .addComponent(cancelButton)
+                                .addComponent(okButton))
+                            .addContainerGap())
+                );
+            }
+
+            GroupLayout dialogPaneLayout = new GroupLayout(dialogPane);
+            dialogPane.setLayout(dialogPaneLayout);
+            dialogPaneLayout.setHorizontalGroup(
+                dialogPaneLayout.createParallelGroup()
+                    .addComponent(contentPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, dialogPaneLayout.createSequentialGroup()
+                        .addContainerGap(374, Short.MAX_VALUE)
+                        .addComponent(panelButtons, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+            );
+            dialogPaneLayout.setVerticalGroup(
+                dialogPaneLayout.createParallelGroup()
+                    .addGroup(dialogPaneLayout.createSequentialGroup()
+                        .addComponent(contentPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelButtons, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+            );
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
         pack();
@@ -216,23 +211,21 @@ public class Login extends JFrame implements Receiver {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
-    @Override
-    public void update(Response response) {
-        int value = response.getInt();
-        if (value == 1) {
-            try {
-                SwingUtilities.invokeAndWait(() -> JOptionPane.showConfirmDialog(this, "Login successful"));
-            } catch (InterruptedException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    public String getReceiverType() {
-        return receiverType;
-    }
-
-
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    // Generated using JFormDesigner Evaluation license - Vasiliu George
+    private JPanel dialogPane;
+    private JPanel contentPanel;
+    private JPanel panelLoginImage;
+    private JLabel labelLogin;
+    private JPanel panelCentral;
+    private JLabel labelUsername;
+    private JLabel labelPassword;
+    private JTextField textFieldUsername;
+    private JTextField textFieldPassword;
+    private JCheckBox checkBoxOfflineAccount;
+    private JPanel panelButtons;
+    private JButton helpButton;
+    private JButton cancelButton;
+    private JButton okButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
