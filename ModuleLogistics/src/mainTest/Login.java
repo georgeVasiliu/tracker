@@ -4,25 +4,37 @@
 
 package mainTest;
 
-import command.network.LoginCommand;
-import request.Delegator;
-import request.RequestHandler;
 import response.Receiver;
 import response.Response;
 import response.ResponseManager;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
-import javax.swing.GroupLayout;
-import javax.swing.border.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ResourceBundle;
 
 /**
  * @author Vasiliu George
  */
 public class Login extends JFrame implements Receiver {
     private static final String receiverType = "login";
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    // Generated using JFormDesigner Evaluation license - Vasiliu George
+    private JPanel dialogPane;
+    private JPanel contentPanel;
+    private JPanel panelLoginImage;
+    private JLabel labelLogin;
+    private JPanel panelCentral;
+    private JLabel labelUsername;
+    private JLabel labelPassword;
+    private JTextField textFieldUsername;
+    private JTextField textFieldPassword;
+    private JCheckBox checkBoxOfflineAccount;
+    private JPanel bottomPanel;
+    private JButton okButton;
+    private JLabel labelOfflineAccount;
 
     public Login() {
         ResponseManager.addReceiver(this);
@@ -30,7 +42,7 @@ public class Login extends JFrame implements Receiver {
     }
 
     private void okButtonMouseClicked(MouseEvent e) {
-       // Delegator.getDelegator().sendRequest(RequestHandler.RequestType.LOGIN, new LoginCommand("Ala", "Bala", 2));
+        // Delegator.getDelegator().sendRequest(RequestHandler.RequestType.LOGIN, new LoginCommand("Ala", "Bala", 2));
     }
 
     private void initComponents() {
@@ -47,10 +59,9 @@ public class Login extends JFrame implements Receiver {
         textFieldUsername = new JTextField();
         textFieldPassword = new JTextField();
         checkBoxOfflineAccount = new JCheckBox();
-        panelButtons = new JPanel();
-        helpButton = new JButton();
-        cancelButton = new JButton();
+        bottomPanel = new JPanel();
         okButton = new JButton();
+        labelOfflineAccount = new JLabel();
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -82,6 +93,7 @@ public class Login extends JFrame implements Receiver {
                     //---- labelLogin ----
                     labelLogin.setText(bundle.getString("Login.labelLogin.text"));
                     labelLogin.setHorizontalAlignment(SwingConstants.CENTER);
+                    labelLogin.setBackground(SystemColor.desktop);
 
                     GroupLayout panelLoginImageLayout = new GroupLayout(panelLoginImage);
                     panelLoginImage.setLayout(panelLoginImageLayout);
@@ -129,7 +141,7 @@ public class Login extends JFrame implements Receiver {
                                                             .addGroup(panelCentralLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                                     .addComponent(textFieldPassword, GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                                                                     .addComponent(textFieldUsername, GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))))
-                                            .addContainerGap(207, Short.MAX_VALUE))
+                                            .addContainerGap(212, Short.MAX_VALUE))
                     );
                     panelCentralLayout.setVerticalGroup(
                             panelCentralLayout.createParallelGroup()
@@ -144,7 +156,7 @@ public class Login extends JFrame implements Receiver {
                                                     .addComponent(textFieldPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addComponent(checkBoxOfflineAccount)
-                                            .addContainerGap(7, Short.MAX_VALUE))
+                                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     );
                 }
 
@@ -170,14 +182,8 @@ public class Login extends JFrame implements Receiver {
                 );
             }
 
-            //======== panelButtons ========
+            //======== bottomPanel ========
             {
-
-                //---- helpButton ----
-                helpButton.setText(bundle.getString("Login.helpButton.text"));
-
-                //---- cancelButton ----
-                cancelButton.setText(bundle.getString("Login.cancelButton.text"));
 
                 //---- okButton ----
                 okButton.setText(bundle.getString("Login.okButton.text"));
@@ -188,27 +194,30 @@ public class Login extends JFrame implements Receiver {
                     }
                 });
 
-                GroupLayout panelButtonsLayout = new GroupLayout(panelButtons);
-                panelButtons.setLayout(panelButtonsLayout);
-                panelButtonsLayout.setHorizontalGroup(
-                        panelButtonsLayout.createParallelGroup()
-                                .addGroup(panelButtonsLayout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(okButton, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(helpButton, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                //---- labelOfflineAccount ----
+                labelOfflineAccount.setText(bundle.getString("Login.labelOfflineAccount.text"));
+                labelOfflineAccount.setFont(new Font("DejaVu Sans", Font.ITALIC, 12));
+                labelOfflineAccount.setForeground(SystemColor.activeCaption);
+
+                GroupLayout bottomPanelLayout = new GroupLayout(bottomPanel);
+                bottomPanel.setLayout(bottomPanelLayout);
+                bottomPanelLayout.setHorizontalGroup(
+                        bottomPanelLayout.createParallelGroup()
+                                .addGroup(bottomPanelLayout.createSequentialGroup()
+                                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(labelOfflineAccount)
                                         .addContainerGap())
+                                .addGroup(GroupLayout.Alignment.TRAILING, bottomPanelLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(okButton, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
                 );
-                panelButtonsLayout.setVerticalGroup(
-                        panelButtonsLayout.createParallelGroup()
-                                .addGroup(panelButtonsLayout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addGroup(panelButtonsLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(helpButton)
-                                                .addComponent(cancelButton)
-                                                .addComponent(okButton))
+                bottomPanelLayout.setVerticalGroup(
+                        bottomPanelLayout.createParallelGroup()
+                                .addGroup(bottomPanelLayout.createSequentialGroup()
+                                        .addContainerGap(7, Short.MAX_VALUE)
+                                        .addComponent(okButton)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(labelOfflineAccount)
                                         .addContainerGap())
                 );
             }
@@ -219,16 +228,16 @@ public class Login extends JFrame implements Receiver {
                     dialogPaneLayout.createParallelGroup()
                             .addComponent(contentPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(GroupLayout.Alignment.TRAILING, dialogPaneLayout.createSequentialGroup()
-                                    .addContainerGap(374, Short.MAX_VALUE)
-                                    .addComponent(panelButtons, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addContainerGap(467, Short.MAX_VALUE)
+                                    .addComponent(bottomPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                     .addContainerGap())
             );
             dialogPaneLayout.setVerticalGroup(
                     dialogPaneLayout.createParallelGroup()
                             .addGroup(dialogPaneLayout.createSequentialGroup()
                                     .addComponent(contentPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(panelButtons, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(bottomPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
             );
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
@@ -237,39 +246,14 @@ public class Login extends JFrame implements Receiver {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Vasiliu George
-    private JPanel dialogPane;
-    private JPanel contentPanel;
-    private JPanel panelLoginImage;
-    private JLabel labelLogin;
-    private JPanel panelCentral;
-    private JLabel labelUsername;
-    private JLabel labelPassword;
-    private JTextField textFieldUsername;
-    private JTextField textFieldPassword;
-    private JCheckBox checkBoxOfflineAccount;
-    private JPanel panelButtons;
-    private JButton helpButton;
-    private JButton cancelButton;
-    private JButton okButton;
-
     @Override
     public void update(Response response) {
-        int value = response.getInt();
-        if (value == 1) {
-            SwingUtilities.invokeLater(() -> {
-                Object[] options = {"Ok"};
-                JOptionPane.showOptionDialog(this, "Successful login", "Login"
-                        , JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-            });
-        }
     }
 
     @Override
     public String getReceiverType() {
-        return receiverType;
+        return null;
     }
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

@@ -15,9 +15,23 @@ public class Task {
     private String title;
     private String description;
     private ImageIcon imageIcon;
-    private String status;
     private List<Task> dependencyList;
     private List<Member> workers;
+    private String comments;
+    private List<Notifier> notifierList;
+    private History history;
+    private List<Task> childs;
+    private Task parent;
+    private Date deadline;
+    private STATUS status;
+
+    public History getHistory() {
+        return history;
+    }
+
+    public void setHistory(History history) {
+        this.history = history;
+    }
 
     public String getTitle() {
         return title;
@@ -43,11 +57,11 @@ public class Task {
         this.imageIcon = imageIcon;
     }
 
-    public String getStatus() {
+    public STATUS getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(STATUS status) {
         this.status = status;
     }
 
@@ -107,11 +121,7 @@ public class Task {
         this.deadline = deadline;
     }
 
-    private String comments;
-    private List<Notifier> notifierList;
-    private History history;
-    private List<Task> childs;
-    private Task parent;
-    private Date deadline;
+    private enum STATUS {INPROGRESS, DONE, CANCELED, INREVIEW,}
+
 
 }

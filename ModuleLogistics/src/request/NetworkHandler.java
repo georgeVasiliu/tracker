@@ -8,7 +8,7 @@ import secureCommunication.SecureCommunication;
  */
 public class NetworkHandler extends RequestHandler {
     private static NetworkHandler networkHandler;
-    public SecureCommunication secureCommunication = SecureCommunication.getSecureCommunication();
+    protected SecureCommunication secureCommunication = SecureCommunication.getSecureCommunication();
 
 
     private NetworkHandler() {

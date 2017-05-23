@@ -1,36 +1,33 @@
 package command.network;
 
 import command.Command;
-import executor.ExecutorsReference;
 import org.codehaus.jackson.map.ObjectMapper;
-import request.NetworkHandler;
 import request.RequestHandler;
-import response.Response;
 import secureCommunication.UserAccountInParameters;
 import secureCommunication.UserAccountOutParameters;
-import sun.nio.ch.Net;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.ProtocolException;
-import java.net.URLConnection;
+import java.io.IOException;
 
 /**
  * Created by george on 5/15/17.
  */
 public class LoginCommand implements Command {
-    private UserAccountOutParameters userAccountOutParameters;
     private static final String AUTHENTICATE = "/authentification"; //name of the Rest service in the server
+    private UserAccountOutParameters userAccountOutParameters;
 
 
     public LoginCommand(UserAccountOutParameters userAccountOutParameters) {
         this.userAccountOutParameters = userAccountOutParameters;
     }
 
+
+    /*
+    * Propery way of handling network requests
+    * */
     @Override
     public void execute(RequestHandler requestHandler) {
         Client client = ClientBuilder.newClient();
