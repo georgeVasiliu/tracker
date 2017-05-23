@@ -10,8 +10,8 @@ new FormModel {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {comp contentPanel::l:::x, seq t {space ::374:x, comp panelButtons:::p::p, space :::p}}"
-				"$verticalGroup": "par l {seq l {comp contentPanel:::::x, space :::p, comp panelButtons:::p::p}}"
+				"$horizontalGroup": "par l {comp contentPanel::l:::x, seq t {space ::467:x, comp bottomPanel:::p::p, space :::p}}"
+				"$verticalGroup": "par l {seq l {comp contentPanel:::::x, space u:::p, comp bottomPanel:::p::p}}"
 			} ) {
 				name: "dialogPane"
 				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
@@ -29,11 +29,12 @@ new FormModel {
 							name: "labelLogin"
 							"text": new FormMessage( null, "Login.labelLogin.text" )
 							"horizontalAlignment": 0
+							"background": sfield java.awt.SystemColor desktop
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :p:137:p, par t {comp checkBoxOfflineAccount:::p::p, seq {par l {comp labelPassword::l:p::p, comp labelUsername::l:p::p}, space s:::p, par l:::p {comp textFieldPassword::::197:x, comp textFieldUsername::::197:x}}}, space ::207:x}}"
-						"$verticalGroup": "par l {seq l {space :p:14:p, par b {comp labelUsername::b:p::p, comp textFieldUsername::b:p::p}, space :p:26:p, par b {comp labelPassword::b:p::p, comp textFieldPassword::b:p::p}, space u:::p, comp checkBoxOfflineAccount:::p::p, space ::7:x}}"
+						"$horizontalGroup": "par l {seq l {space :p:137:p, par t {comp checkBoxOfflineAccount:::p::p, seq {par l {comp labelPassword::l:p::p, comp labelUsername::l:p::p}, space s:::p, par l:::p {comp textFieldPassword::::197:x, comp textFieldUsername::::197:x}}}, space ::212:x}}"
+						"$verticalGroup": "par l {seq l {space :p:14:p, par b {comp labelUsername::b:p::p, comp textFieldUsername::b:p::p}, space :p:26:p, par b {comp labelPassword::b:p::p, comp textFieldPassword::b:p::p}, space u:::p, comp checkBoxOfflineAccount:::p::p, space :::x}}"
 					} ) {
 						name: "panelCentral"
 						add( new FormComponent( "javax.swing.JLabel" ) {
@@ -57,22 +58,20 @@ new FormModel {
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, comp okButton:::p:80:p, space :::p, comp cancelButton:::p:80:p, space :::p, comp helpButton:::p:80:p, space :::p}}"
-					"$verticalGroup": "par l {seq {space :::p, par b {comp helpButton::b:p::p, comp cancelButton::b:p::p, comp okButton::b:p::p}, space :::p}}"
+					"$horizontalGroup": "par l {seq {space :::x, comp labelOfflineAccount:::p::p, space :::p}, seq t {space :0:0:x, comp okButton:::p:80:p}}"
+					"$verticalGroup": "par l {seq l {space ::7:x, comp okButton:::p::p, space :::p, comp labelOfflineAccount:::p::p, space :::p}}"
 				} ) {
-					name: "panelButtons"
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "helpButton"
-						"text": new FormMessage( null, "Login.helpButton.text" )
-					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "cancelButton"
-						"text": new FormMessage( null, "Login.cancelButton.text" )
-					} )
+					name: "bottomPanel"
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "okButton"
 						"text": new FormMessage( null, "Login.okButton.text" )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "okButtonMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelOfflineAccount"
+						"text": new FormMessage( null, "Login.labelOfflineAccount.text" )
+						"font": new java.awt.Font( "DejaVu Sans", 2, 12 )
+						"foreground": sfield java.awt.SystemColor activeCaption
 					} )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {

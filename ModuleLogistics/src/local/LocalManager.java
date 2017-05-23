@@ -5,6 +5,10 @@ import objective.Objective;
 import project.Project;
 import task.Task;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+
 /**
  * Created by george on 5/17/17.
  */
@@ -29,6 +33,9 @@ public class LocalManager {
 
     public void validateLogin(UserAccount credentials) {
 
+    }
+
+    public void createLocalAccount(UserAccount userAccount) {
     }
 
     public void grabProjects(UserAccount userAccount) {
