@@ -1,43 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c4956fa-30bb-4410-b399-29c06983d271" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ModuleGui/src/createAccount/CreateAccount.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ModuleGui/src/createAccount/CreateAccountController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/StartupClass.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/account/UserAccountWrapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/command/local/CreateLocalAccountCommand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/hash/Base64Encoder.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ModuleLogistics/mainTest/Login$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ModuleLogistics/mainTest/Login$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ModuleLogistics/mainTest/Login.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ModuleLogistics/mainTest/Login.jfd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ModuleLogistics/mainTest/Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ModuleLogistics/resources/guiText.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ModuleLogistics/resources/guiText_en_US.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ModuleLogistics/resources/guiText_ro_RO.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/mainTest/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/guiText.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/guiText_en_US.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/guiText_ro_RO.properties" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ModuleLogistics/account/UserAccount.class" afterPath="$PROJECT_DIR$/out/production/ModuleLogistics/account/UserAccount.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ModuleLogistics/local/LocalManager.class" afterPath="$PROJECT_DIR$/out/production/ModuleLogistics/local/LocalManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ModuleLogistics/member/Member.class" afterPath="$PROJECT_DIR$/out/production/ModuleLogistics/member/Member.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ModuleLogistics/request/NetworkHandler.class" afterPath="$PROJECT_DIR$/out/production/ModuleLogistics/request/NetworkHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ModuleLogistics/secureCommunication/UserAccountOutParameters.class" afterPath="$PROJECT_DIR$/out/production/ModuleLogistics/secureCommunication/UserAccountOutParameters.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ModuleGui/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ModuleGui/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ModuleGui/ModuleGui.iml" afterPath="$PROJECT_DIR$/../ModuleGui/ModuleGui.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ModuleGui/src/login/Login.fxml" afterPath="$PROJECT_DIR$/../ModuleGui/src/login/Login.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ModuleGui/src/login/LoginController.java" afterPath="$PROJECT_DIR$/../ModuleGui/src/login/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/account/UserAccount.java" afterPath="$PROJECT_DIR$/src/account/UserAccount.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/command/local/LocalLoginCommand.java" afterPath="$PROJECT_DIR$/src/command/local/LocalLoginCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hash/HashGen.java" afterPath="$PROJECT_DIR$/src/hash/HashGen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/local/LocalManager.java" afterPath="$PROJECT_DIR$/src/local/LocalManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/request/NetworkHandler.java" afterPath="$PROJECT_DIR$/src/request/NetworkHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/secureCommunication/UserAccountOutParameters.java" afterPath="$PROJECT_DIR$/src/secureCommunication/UserAccountOutParameters.java" />
-    </list>
+    <list default="true" id="0c4956fa-30bb-4410-b399-29c06983d271" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -1150,7 +1114,7 @@
       <workItem from="1495537344425" duration="1679000" />
       <workItem from="1495626776112" duration="131000" />
       <workItem from="1495725523012" duration="4648000" />
-      <workItem from="1495735263780" duration="11904000" />
+      <workItem from="1495735263780" duration="11966000" />
     </task>
     <task id="LOCAL-00001">
       <created>1494852640252</created>
@@ -1171,7 +1135,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60288000" />
+    <option name="totallyTimeSpent" value="60350000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
