@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class HashGen {
 
-    public static final char[] getHash(String password) {
+    public static final String getHash(String password) {
         MessageDigest md;
         try {
             md = MessageDigest.getInstance("SHA-1");
@@ -19,7 +19,7 @@ public class HashGen {
                 sb.append(String.format("%02x", b & 0xff));
             }
             if (sb.capacity() > 1) {
-                return sb.toString().toCharArray();
+                return sb.toString();
             }
         } catch (NoSuchAlgorithmException ex) {
             return null;

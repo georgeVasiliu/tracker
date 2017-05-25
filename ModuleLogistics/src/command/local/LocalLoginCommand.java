@@ -2,6 +2,7 @@ package command.local;
 
 import account.UserAccount;
 import command.Command;
+import request.NetworkHandler;
 import request.RequestHandler;
 
 /**
@@ -11,16 +12,18 @@ import request.RequestHandler;
 
 public class LocalLoginCommand implements Command {
 
-    private UserAccount userAccount;
+    private final String userName;
+    private final String userPassword;
 
 
-    public LocalLoginCommand(UserAccount userAccount) {
-        this.userAccount = userAccount;
+    public LocalLoginCommand(String userName, String userPassword) {
+        this.userName = userName;
+        this.userPassword = userPassword;
     }
 
 
     @Override
     public void execute(RequestHandler requestHandler) {
-
+        ((NetworkHandler)requestHandler).localManager.validateLogin(userName,userPassword);
     }
 }
