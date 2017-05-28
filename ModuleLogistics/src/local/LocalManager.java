@@ -3,7 +3,9 @@ package local;
 import account.UserAccount;
 import account.UserAccountWrapper;
 import hash.HashGen;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.stage.Modality;
 import logger.Log;
 import objective.Objective;
 import project.Project;
@@ -31,6 +33,8 @@ public class LocalManager implements Dispatcher {
     private List<UserAccount> storedUserAccounts;
     private List<Receiver> receiverList = new ArrayList<>();
     private final String jarDir;
+    private static UserAccount currentUser;
+    private static boolean localLogin;
     private String installationPath;
     private String projectPath;
     private String objectivePath;
@@ -69,8 +73,13 @@ public class LocalManager implements Dispatcher {
             if (userAccount.getUserName().equals(userName) && userAccount.getUserPassword().equals(hashedPassword)) {
                 Log.printLog(Log.LOG_TYPE_INFO, "Successfully logged into the application.");
                 sendResponse(new Response("Successful login, bro!"));
+                currentUser = userAccount;
+                localLogin = true;
+                return;
             }
         }
+        localLogin = false;
+        sendResponse(new Response("Failed login, bro!"));
     }
 
     public void createLocalAccount(UserAccount userAccount) {
@@ -81,13 +90,14 @@ public class LocalManager implements Dispatcher {
             UserAccountWrapper userAccountWrapper = new UserAccountWrapper();
             storedUserAccounts.add(userAccount);
             userAccountWrapper.setUserAccounts(storedUserAccounts);
-            marshaller.marshal(userAccountWrapper, new File(jarDir + ".xml"));
+            marshaller.marshal(userAccountWrapper, new File(jarDir + "Accounts.xml"));
         } catch (JAXBException e) {
             Log.printLog(Log.LOG_TYPE_ERROR, "A JAXBException has been caught.");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Could not save data");
             alert.setContentText("Could not save the user account!");
+            alert.initModality(Modality.APPLICATION_MODAL);
             alert.showAndWait();
         }
     }
@@ -140,9 +150,10 @@ public class LocalManager implements Dispatcher {
 
     @Override
     public void sendResponse(Response response) {
-        for (Receiver receiver : receiverList) {
-            receiver.update(response);
-        }
+        for (Receiver receiver : receiverList)
+            Platform.runLater(() -> {
+                receiver.update(response);
+            });
     }
 
     @Override

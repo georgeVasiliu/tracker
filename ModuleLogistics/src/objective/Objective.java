@@ -1,81 +1,36 @@
 package objective;
 
 import member.Member;
+import notifier.Notifier;
 import task.Task;
 
 import javax.swing.*;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by george on 5/17/17.
  */
-public class Objective {
-    private String objectiveTitle;
-    private String objectiveSummary;
-    private ImageIcon objectiveIcon;
-    private String[] objectiveComments;
-    private Member objectiveSupervisor;
-    //    private PercentBar objectivePercentBar;
-    private STATUS status;
-    private List<Task> objectiveAssociatedTasks;
+public class Objective extends Task {
+    private Member supervisor;
+    private Notifier synchronizer;
 
-    public String getObjectiveTitle() {
-        return objectiveTitle;
+    @Override
+    public Task getParent() {
+        return null;
     }
 
-    public void setObjectiveTitle(String objectiveTitle) {
-        this.objectiveTitle = objectiveTitle;
+    @Override
+    public Date getDeadline() {
+        return null;
+        //may be changed with something that gathers the deadline of all it's tasks
     }
 
-    public String getObjectiveSummary() {
-        return objectiveSummary;
+    @Override
+    public List<Member> getWorkers() {
+        return null;
+        //here, we have to make a call to each task and get it's members, and then we will return a
+        // list with lists (may be a single list)
     }
-
-    public void setObjectiveSummary(String objectiveSummary) {
-        this.objectiveSummary = objectiveSummary;
-    }
-
-    public ImageIcon getObjectiveIcon() {
-        return objectiveIcon;
-    }
-
-    public void setObjectiveIcon(ImageIcon objectiveIcon) {
-        this.objectiveIcon = objectiveIcon;
-    }
-
-    public String[] getObjectiveComments() {
-        return objectiveComments;
-    }
-
-    public void setObjectiveComments(String[] objectiveComments) {
-        this.objectiveComments = objectiveComments;
-    }
-
-    public Member getObjectiveSupervisor() {
-        return objectiveSupervisor;
-    }
-
-    public void setObjectiveSupervisor(Member objectiveSupervisor) {
-        this.objectiveSupervisor = objectiveSupervisor;
-    }
-
-    public STATUS getStatus() {
-        return status;
-    }
-
-    public void setStatus(STATUS status) {
-        this.status = status;
-    }
-
-    public List<Task> getObjectiveAssociatedTasks() {
-        return objectiveAssociatedTasks;
-    }
-
-    public void setObjectiveAssociatedTasks(List<Task> objectiveAssociatedTasks) {
-        this.objectiveAssociatedTasks = objectiveAssociatedTasks;
-    }
-
-    private enum STATUS {INREVIEW, INPROGRESS, DONE, ABANDONED}
-
 
 }

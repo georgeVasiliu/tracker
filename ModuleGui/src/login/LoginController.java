@@ -9,11 +9,13 @@ import command.network.LoginCommand;
 import createAccount.CreateAccountController;
 import hash.HashGen;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventDispatchChain;
 import javafx.event.EventDispatcher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -36,7 +38,7 @@ import java.util.Optional;
 /**
  * Created by george on 5/24/17.
  */
-public class LoginController extends Application implements Receiver {
+public class LoginController implements Receiver {
 
 
     @FXML
@@ -47,9 +49,6 @@ public class LoginController extends Application implements Receiver {
     private Button loginButton;
     @FXML
     private Canvas canvas;
-
-    private Stage primaryStage;
-    private AnchorPane rootLayout;
 
 
     @FXML
@@ -76,7 +75,6 @@ public class LoginController extends Application implements Receiver {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Create a new local account");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(createAccountLayout);
             dialogStage.setScene(scene);
 
@@ -89,34 +87,20 @@ public class LoginController extends Application implements Receiver {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Login with your credentials");
-        initRootLayout();
-    }
-
-    private void initRootLayout() {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(LoginController.class.getResource("Login.fxml"));
-        try {
-            rootLayout = fxmlLoader.load();
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public void update(Response response) {
+
         if (response.getString().contains("Successful")) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("Login successful");
             alert.setContentText("Please wait while the application starts");
-            Optional<ButtonType> whatHappened = alert.showAndWait();
-            Scene scene = new Scene(alert.getDialogPane());
-            primaryStage.setScene(scene);
+            alert.showAndWait();
+        }
+        if (response.getString().contains("Failed")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Login unsuccessful");
+            alert.setContentText("The credentials you entered are invalid");
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.showAndWait();
         }
     }
 
