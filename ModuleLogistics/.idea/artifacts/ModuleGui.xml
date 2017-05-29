@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/ModuleGui</output-path>
     <properties id="javafx-properties">
       <options>
-        <option name="appClass" value="MainApp" />
+        <option name="appClass" value="main.MainApp" />
         <option name="description" value="RandomDescription" />
         <option name="height" value="600" />
         <option name="htmlPlaceholderId" value="" />

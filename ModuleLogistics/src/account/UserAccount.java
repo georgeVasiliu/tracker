@@ -15,9 +15,9 @@ import java.util.Random;
  */
 public class UserAccount {
 
-    private final String userUID;
-    private String localFolder;
-    private String projectsFolder;
+    private final StringProperty userUID;
+    private final StringProperty localFolder;
+    private final StringProperty projectsFolder;
 
 
     private final StringProperty userName;
@@ -29,6 +29,21 @@ public class UserAccount {
     private final StringProperty userCountry;
     private final IntegerProperty userPhoneNumber;
 
+    public UserAccount() {
+        localFolder = new SimpleStringProperty();
+        projectsFolder = new SimpleStringProperty();
+        userUID = new SimpleStringProperty();
+        userName = new SimpleStringProperty();
+        userPassword = new SimpleStringProperty();
+        userFirstName = new SimpleStringProperty();
+        userLastName = new SimpleStringProperty();
+        userAddress = new SimpleStringProperty();
+        userCity = new SimpleStringProperty();
+        userCountry = new SimpleStringProperty();
+        userPhoneNumber = new SimpleIntegerProperty();
+    }
+
+
     public UserAccount(String userName, String userPassword) {
         this.userName = new SimpleStringProperty(userName);
         this.userPassword = new SimpleStringProperty(userPassword);
@@ -39,8 +54,10 @@ public class UserAccount {
         userCity = new SimpleStringProperty();
         userCountry = new SimpleStringProperty();
         userPhoneNumber = new SimpleIntegerProperty();
-
-        userUID = userName.substring(0, 3) + HashGen.getHash(userPassword).substring(0, 3);
+        localFolder = new SimpleStringProperty();
+        projectsFolder = new SimpleStringProperty();
+        userUID = new SimpleStringProperty();
+        userUID.set(userName.substring(0, 3) + HashGen.getHash(userPassword).substring(0, 3));
 
     }
 
@@ -110,23 +127,23 @@ public class UserAccount {
     }
 
     public String getUserUID() {
-        return userUID;
+        return userUID.get();
     }
 
     public String getLocalFolder() {
-        return localFolder;
+        return localFolder.get();
     }
 
     public void setLocalFolder(String localFolder) {
-        this.localFolder = localFolder;
+        this.localFolder.set(localFolder);
     }
 
     public String getProjectsFolder() {
-        return projectsFolder;
+        return projectsFolder.get();
     }
 
     public void setProjectsFolder(String projectsFolder) {
-        this.projectsFolder = projectsFolder;
+        this.projectsFolder.set(projectsFolder);
     }
 
 

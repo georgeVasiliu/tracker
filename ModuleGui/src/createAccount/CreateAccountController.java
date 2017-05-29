@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import main.MainApp;
 import request.Delegator;
 import request.RequestHandler;
 
@@ -33,6 +34,7 @@ public class CreateAccountController {
 
 
     private Stage dialogStage;
+    private MainApp mainApp;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
@@ -40,7 +42,7 @@ public class CreateAccountController {
 
     @FXML
     private void initialize() {
-
+        mainApp = MainApp.getMainAppInstance();
     }
 
 

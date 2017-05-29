@@ -8,9 +8,9 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="ModuleGui.jar" size="12938" download="eager" />
-    <jar href="ModuleLogistics.jar" size="33550" download="eager" />
+    <jar href="ModuleGui.jar" size="14707" download="eager" />
+    <jar href="ModuleLogistics.jar" size="34093" download="eager" />
   </resources>
-  <jfx:javafx-desc  width="800" height="600" main-class="MainApp"  name="ModuleGui" />
+  <jfx:javafx-desc  width="800" height="600" main-class="main.MainApp"  name="ModuleGui" />
   <update check="background"/>
 </jnlp>

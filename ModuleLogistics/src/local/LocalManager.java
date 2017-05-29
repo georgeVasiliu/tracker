@@ -15,20 +15,14 @@ import response.Response;
 import response.ResponseManager;
 import task.Task;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import javax.xml.bind.*;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.CodeSource;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -41,10 +35,8 @@ public class LocalManager implements Dispatcher {
     private final String jarDir;
     private static UserAccount currentUser;
     private static boolean localLogin;
-    private String installationPath;
 
     private LocalManager() {
-        readAnyStoredData();
         CodeSource codeSource = LocalManager.class.getProtectionDomain().getCodeSource();
         File jarFile = null;
         try {
@@ -54,6 +46,7 @@ public class LocalManager implements Dispatcher {
         }
         jarDir = jarFile.getPath().substring(0, jarFile.getPath().length() - 19);
         ResponseManager.addDispatcher(this, "Login");
+        readAnyStoredData();
         Log.printLog(Log.LOG_TYPE_INFO, "Set the jarDir to : " + jarDir);
     }
 
@@ -66,8 +59,22 @@ public class LocalManager implements Dispatcher {
 
 
     public void readAnyStoredData() {
-        //if nothing found, create new holders
-        storedUserAccounts = new ArrayList<UserAccount>();
+        File file = new File(jarDir + "LocalAccounts.xml");
+        if (file.exists()) {
+            try (FileInputStream fileInputStream = new FileInputStream(file)) {
+                UserAccountWrapper userAccountWrapper = JAXB.unmarshal(file, UserAccountWrapper.class);
+                storedUserAccounts = new ArrayList<>();
+                storedUserAccounts.addAll(userAccountWrapper.getUserAccounts());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        } else {
+            storedUserAccounts = new ArrayList<>();
+        }
     }
 
     public void validateLogin(String userName, String userPassword) {

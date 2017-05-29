@@ -43,6 +43,7 @@ public class LoginController implements Receiver {
 
     @FXML
     private void initialize() {
+        mainApp = MainApp.getMainAppInstance();
         ResponseManager.addReceiver(this);
     }
 
@@ -84,12 +85,7 @@ public class LoginController implements Receiver {
             alert.setHeaderText("Login successful");
             alert.setContentText("Please wait while the application starts");
             alert.showAndWait();
-            boolean result = alert.getResult().getButtonData().isDefaultButton();
-            if (result) {
-
-
-            }
-
+            mainApp.initSummaryInterface();
         }
         if (response.getString().contains("Failed")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -1,20 +1,26 @@
 package summary;
 
 import account.UserAccount;
+import createProject.CreateProjectController;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import local.LocalManager;
 import logger.Log;
 import main.MainApp;
 
-import javax.swing.text.html.ImageView;
-import java.util.List;
+ import java.io.IOException;
 
 /**
  * Created by g0dzax on 5/26/2017.
@@ -30,21 +36,26 @@ public class SummaryController {
     @FXML
     private ListView<String> listView;
 
-    private ObservableList<String> choiceBoxItems = FXCollections.observableArrayList("Logout");
+    private ObservableList<String> choiceBoxItems;
     private UserAccount currentUser;
-    private ObservableList<String> listViewItems = FXCollections.observableArrayList("Create a new project");
+    private ObservableList<String> listViewItems;
     private MainApp mainApp;
+    private Stage dialogStage;
 
     public SummaryController() {
-
+        System.out.println("First, created the controller");
     }
 
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
     }
+
 
     @FXML
     private void initialize() {
+        listViewItems = FXCollections.observableArrayList("Create a new project");
+        choiceBoxItems = FXCollections.observableArrayList("Logout");
+        mainApp = MainApp.getMainAppInstance();
         currentUser = LocalManager.getLocalManager().getCurrentUser();
         stringChoiceBox.setItems(choiceBoxItems);
         stringChoiceBox.getSelectionModel()
@@ -65,12 +76,33 @@ public class SummaryController {
     private void listItemClicked() {
         if (listView.getSelectionModel().getSelectedItem().contains("new")) {
             // bring up the create a new project list
-            System.out.println("Clicked on item ! " + listView.getSelectionModel().getSelectedItem());
+            System.out.println("Clicked on new project item ! " + listView.getSelectionModel().getSelectedItem());
+            loadCreateProjectDialogStage();
         } else {
             // populate the statistics with the information held in the project
             System.out.println("Clicked on item ! " + listView.getSelectionModel().getSelectedItem());
 
         }
+    }
+
+    private void loadCreateProjectDialogStage() {
+        Stage createProjectStage = new Stage();
+        createProjectStage.initModality(Modality.APPLICATION_MODAL);
+        createProjectStage.initOwner(dialogStage);
+        FXMLLoader createProjectLoader = new FXMLLoader();
+        createProjectLoader.setLocation(CreateProjectController.class.getResource("CreateProject.fxml"));
+        try {
+            AnchorPane createProjectPane = createProjectLoader.load();
+            Scene newScene = new Scene(createProjectPane);
+            CreateProjectController createProjectController = createProjectLoader.getController();
+            createProjectController.setDialogStage(createProjectStage);
+            createProjectStage.setScene(newScene);
+            createProjectStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 
