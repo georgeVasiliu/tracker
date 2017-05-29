@@ -1,45 +1,31 @@
 package login;
 
 
-import com.sun.javafx.geom.BaseBounds;
-import com.sun.javafx.geom.transform.BaseTransform;
-import com.sun.javafx.scene.BoundsAccessor;
 import command.local.LocalLoginCommand;
-import command.network.LoginCommand;
 import createAccount.CreateAccountController;
-import hash.HashGen;
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.Event;
-import javafx.event.EventDispatchChain;
-import javafx.event.EventDispatcher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.JavaFXBuilderFactory;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
-import javafx.scene.effect.Effect;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import main.MainApp;
 import request.Delegator;
 import request.RequestHandler;
 import response.Receiver;
 import response.Response;
 import response.ResponseManager;
-import secureCommunication.UserAccountOutParameters;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Optional;
 
 /**
  * Created by george on 5/24/17.
  */
 public class LoginController implements Receiver {
 
+    private MainApp mainApp;
 
     @FXML
     private TextField userNameField;
@@ -49,6 +35,10 @@ public class LoginController implements Receiver {
     private Button loginButton;
     @FXML
     private Canvas canvas;
+
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
 
 
     @FXML
@@ -94,6 +84,12 @@ public class LoginController implements Receiver {
             alert.setHeaderText("Login successful");
             alert.setContentText("Please wait while the application starts");
             alert.showAndWait();
+            boolean result = alert.getResult().getButtonData().isDefaultButton();
+            if (result) {
+
+
+            }
+
         }
         if (response.getString().contains("Failed")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

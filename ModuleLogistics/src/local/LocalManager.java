@@ -19,7 +19,13 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.CodeSource;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,9 +42,6 @@ public class LocalManager implements Dispatcher {
     private static UserAccount currentUser;
     private static boolean localLogin;
     private String installationPath;
-    private String projectPath;
-    private String objectivePath;
-    private String taskPath;
 
     private LocalManager() {
         readAnyStoredData();
@@ -49,7 +52,7 @@ public class LocalManager implements Dispatcher {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        jarDir = jarFile.getParentFile().getPath();
+        jarDir = jarFile.getPath().substring(0, jarFile.getPath().length() - 19);
         ResponseManager.addDispatcher(this, "Login");
         Log.printLog(Log.LOG_TYPE_INFO, "Set the jarDir to : " + jarDir);
     }
@@ -90,7 +93,8 @@ public class LocalManager implements Dispatcher {
             UserAccountWrapper userAccountWrapper = new UserAccountWrapper();
             storedUserAccounts.add(userAccount);
             userAccountWrapper.setUserAccounts(storedUserAccounts);
-            marshaller.marshal(userAccountWrapper, new File(jarDir + "Accounts.xml"));
+            marshaller.marshal(userAccountWrapper, new File(jarDir + "LocalAccounts.xml"));
+            createLocalFolderForAccount(userAccount);
         } catch (JAXBException e) {
             Log.printLog(Log.LOG_TYPE_ERROR, "A JAXBException has been caught.");
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -102,19 +106,52 @@ public class LocalManager implements Dispatcher {
         }
     }
 
-    public void grabProjects(UserAccount userAccount) {
+    private void createLocalFolderForAccount(UserAccount userAccount) {
+        Path path = Paths.get(jarDir + userAccount.getUserUID());
+        if (!Files.exists(path)) {
+            try {
+                Files.createDirectory(path);
+                userAccount.setLocalFolder(path.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Path path2 = Paths.get(path + "/Projects");
+        if (!Files.exists(path2)) {
+            try {
+                Files.createDirectory(path2);
+                userAccount.setProjectsFolder(path2.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void grabProjects() {
 
     }
 
-    public void grabObjectives(UserAccount userAccount) {
+    public void grabObjectives() {
 
     }
 
-    public void grabTasks(UserAccount userAccount) {
+    public void grabTasks() {
 
     }
 
     public void storeProject(Project project) {
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(currentUser.getProjectsFolder() + project.getProjectName());
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(project);
+            objectOutputStream.flush();
+            objectOutputStream.close();
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            Log.printLog(Log.LOG_TYPE_INFO, "Serialized project :" + project.getProjectName());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
     }
 
@@ -136,6 +173,10 @@ public class LocalManager implements Dispatcher {
 
     public void updateTask(Task task) {
 
+    }
+
+    public UserAccount getCurrentUser() {
+        return currentUser;
     }
 
     @Override

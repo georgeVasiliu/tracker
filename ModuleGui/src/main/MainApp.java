@@ -1,8 +1,12 @@
+package main;
+
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import login.LoginController;
+import summary.SummaryController;
+
 
 import java.io.IOException;
 
@@ -12,7 +16,7 @@ import java.io.IOException;
 public class MainApp extends Application {
 
 
-    private Stage primaryStage;
+    private static Stage primaryStage;
 
 
     public static void main(String[] args) {
@@ -29,12 +33,23 @@ public class MainApp extends Application {
     public void initLoginInterface() {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(MainApp.class.getResource("login/Login.fxml"));
+        LoginController loginController = fxmlLoader.getController();
+        loginController.setMainApp(this);
         changePrimaryStageScene(fxmlLoader);
     }
 
-    private void changePrimaryStageScene(FXMLLoader loader) {
+    public void initSummaryInterface() {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(MainApp.class.getResource("summary/Summary.fxml"));
+        SummaryController summaryController = fxmlLoader.getController();
+        summaryController.setMainApp(this);
+        changePrimaryStageScene(fxmlLoader);
+    }
+
+    private static void changePrimaryStageScene(FXMLLoader loader) {
         try {
             Scene newScene = new Scene(loader.load());
+
             primaryStage.setScene(newScene);
             primaryStage.show();
         } catch (IOException e) {

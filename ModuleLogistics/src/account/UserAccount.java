@@ -1,5 +1,6 @@
 package account;
 
+import hash.HashGen;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -7,14 +8,20 @@ import javafx.beans.property.StringProperty;
 import sun.security.util.Password;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Random;
 
 /*
  * Created by george on 5/22/17.
  */
 public class UserAccount {
 
+    private final String userUID;
+    private String localFolder;
+    private String projectsFolder;
+
+
     private final StringProperty userName;
-    private StringProperty userPassword;
+    private final StringProperty userPassword;
     private final StringProperty userFirstName;
     private final StringProperty userLastName;
     private final StringProperty userAddress;
@@ -32,6 +39,8 @@ public class UserAccount {
         userCity = new SimpleStringProperty();
         userCountry = new SimpleStringProperty();
         userPhoneNumber = new SimpleIntegerProperty();
+
+        userUID = userName.substring(0, 3) + HashGen.getHash(userPassword).substring(0, 3);
 
     }
 
@@ -98,6 +107,26 @@ public class UserAccount {
 
     public String getUserPassword() {
         return userPassword.get();
+    }
+
+    public String getUserUID() {
+        return userUID;
+    }
+
+    public String getLocalFolder() {
+        return localFolder;
+    }
+
+    public void setLocalFolder(String localFolder) {
+        this.localFolder = localFolder;
+    }
+
+    public String getProjectsFolder() {
+        return projectsFolder;
+    }
+
+    public void setProjectsFolder(String projectsFolder) {
+        this.projectsFolder = projectsFolder;
     }
 
 
