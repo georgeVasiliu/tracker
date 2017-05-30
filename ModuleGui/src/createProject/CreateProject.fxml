@@ -27,15 +27,15 @@
             <Label text="Project Name" />
             <Label text="Project summary" GridPane.rowIndex="1" />
             <Label text="Project due date" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="projectNameTextField" GridPane.columnIndex="1" />
+            <TextField fx:id="projectSummaryTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="projectDueDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <ButtonBar layoutX="386.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button mnemonicParsing="false" text="Ok" />
-            <Button mnemonicParsing="false" text="Cancel" />
+          <Button mnemonicParsing="false" onAction="#handleOk" text="Ok" />
+            <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
         </buttons>
       </ButtonBar>
    </children>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,32 +13,35 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="summary.SummaryController">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="86.0" layoutY="140.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane fx:id="splitPane" dividerPositions="0.2694235588972431" layoutX="86.0" layoutY="140.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="366.0">
                <children>
                   <HBox layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="214.0" AnchorPane.bottomAnchor="548.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <children>
                         <ImageView fx:id="currentUserImageView" fitHeight="41.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../user_icon_login.png" />
+                              <Image url="@../resources/images/user_icon_login.png" />
                            </image></ImageView>
                         <Label fx:id="currentUserAccountName" text="Account name">
                            <HBox.margin>
                               <Insets top="10.0" />
                            </HBox.margin>
                         </Label>
-                        <ChoiceBox fx:id="stringChoiceBox" prefHeight="26.0" prefWidth="0.0" scaleX="0.6" scaleY="0.6" HBox.hgrow="NEVER">
+                        <MenuButton fx:id="logoutMenuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="0.0" scaleX="0.5" scaleY="0.5">
+                          <items>
+                            <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
+                          </items>
                            <HBox.margin>
-                              <Insets top="5.0" />
+                              <Insets left="10.0" top="5.0" />
                            </HBox.margin>
-                        </ChoiceBox>
+                        </MenuButton>
                      </children>
                   </HBox>
-                  <ListView fx:id="listView" layoutX="17.0" layoutY="132.0" onMouseClicked="#listItemClicked" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+                  <ListView fx:id="listView" layoutX="17.0" layoutY="132.0" prefHeight="538.0" prefWidth="395.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+            <AnchorPane fx:id="anchorPane" prefHeight="598.0" prefWidth="428.0" />
         </items>
       </SplitPane>
    </children>

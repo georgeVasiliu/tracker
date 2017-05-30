@@ -25,6 +25,7 @@ import java.util.List;
 public class SecureCommunication implements Dispatcher {
 
 
+   private static final List<String> receiversForThisDispatcher = new ArrayList<>();
     private static SecureCommunication secureCommunication;
     private static String currentUsername;
     private List<Receiver> receiverList;
@@ -48,7 +49,7 @@ public class SecureCommunication implements Dispatcher {
 
     private SecureCommunication() {
         receiverList = new ArrayList<>();
-        ResponseManager.addDispatcher(this, "login");
+        ResponseManager.addDispatcher(this);
         login = 0;
     }
 
@@ -169,14 +170,14 @@ public class SecureCommunication implements Dispatcher {
     }
 
     @Override
-    public void sendResponse(Response response) {
+    public void sendResponse(Response response, String toWhichReceiver) {
         for (Receiver receiver : receiverList) {
             receiver.update(response);
         }
     }
 
     @Override
-    public String getTypeOfReceiver() {
-        return "login";
+    public List<String> getTypeOfReceiver() {
+        return receiversForThisDispatcher;
     }
 }

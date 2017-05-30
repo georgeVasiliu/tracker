@@ -6,6 +6,7 @@ import member.Member;
 import objective.Objective;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,10 +18,10 @@ public class Project implements Serializable {
 
     private String projectName;
     private String projectSummary;
-    private Date projectDueDate;
+    private LocalDate projectDueDate;
     private List<Objective> projectListOfObjectives;
 
-    public Project(String projectName, String projectSummary, Date projectDueDate) {
+    public Project(String projectName, String projectSummary, LocalDate projectDueDate) {
         this.projectName = projectName;
         this.projectSummary = projectSummary;
         this.projectDueDate = projectDueDate;
@@ -44,11 +45,11 @@ public class Project implements Serializable {
         this.projectSummary = projectSummary;
     }
 
-    public Date getProjectDueDate() {
+    public LocalDate getProjectDueDate() {
         return projectDueDate;
     }
 
-    public void setProjectDueDate(Date projectDueDate) {
+    public void setProjectDueDate(LocalDate projectDueDate) {
         this.projectDueDate = projectDueDate;
     }
 
@@ -62,5 +63,14 @@ public class Project implements Serializable {
 
     public void addObjective(Objective objective) {
         projectListOfObjectives.add(objective);
+    }
+
+    public void removeObjective(Objective objective) {
+        projectListOfObjectives.remove(objective);
+    }
+
+    @Override
+    public String toString() {
+        return projectName;
     }
 }

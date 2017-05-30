@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectSummary.ProjectSummaryController">
+   <children>
+      <GridPane layoutX="37.0" layoutY="32.0" prefHeight="152.0" prefWidth="554.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.0" minWidth="0.0" prefWidth="162.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="308.0" minWidth="0.0" prefWidth="308.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Name" />
+            <Label text="Summary" GridPane.rowIndex="1" />
+            <Label text="Due date" GridPane.rowIndex="2" />
+            <Label text="Number of objectives" GridPane.rowIndex="3" />
+            <Label text="Completed objectives" GridPane.rowIndex="4" />
+            <Label text="In progress objectives" GridPane.rowIndex="5" />
+            <Label text="Abandoned objectives" GridPane.rowIndex="6" />
+            <Label fx:id="projectNameLabel" text="pr_name" GridPane.columnIndex="1" />
+            <Label fx:id="projectSummaryLabel" text="pr_summary" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="projectDueDateLabel" text="pr_dueDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="projectTotalObjectivesLabel" text="pr_maxObj" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="projectCompletedObjectivesLabel" text="pr_complObj" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="projectInProgressObjectivesLabel" text="pr_inProgObj" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="projectAbandonedObjectivesLabel" text="pr_AbanObj" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         </children>
+      </GridPane>
+      <Label layoutX="14.0" layoutY="14.0" text="Project details" />
+      <ButtonBar layoutX="386.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="350.0">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#handleViewObjectives" text="View objectives" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>

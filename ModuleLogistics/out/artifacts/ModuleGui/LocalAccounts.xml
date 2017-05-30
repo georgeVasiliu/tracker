@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <userAccounts>
     <userAccount>
+        <localFolder>/home/george/IdeaProjects/tracker/ModuleLogistics/out/artifacts/ModuleGui/geo243</localFolder>
+        <projectsFolder>/home/george/IdeaProjects/tracker/ModuleLogistics/out/artifacts/ModuleGui/geo243/Projects</projectsFolder>
         <userAddress>asdf</userAddress>
         <userCity>asdf</userCity>
         <userCountry>asdf</userCountry>
-        <userFirstName>vasdf</userFirstName>
+        <userFirstName>asdf</userFirstName>
         <userLastName>asdf</userLastName>
-        <userName>george</userName>
-        <userPassword>9fd8de5fc2a7c2c0d469b2fff1afde4e5def37ba</userPassword>
-        <userPhoneNumber>1234</userPhoneNumber>
+        <userName>geo</userName>
+        <userPassword>7a8f6388fec13beb8fc38b291db39b38ed464620</userPassword>
+        <userPhoneNumber>123</userPhoneNumber>
     </userAccount>
 </userAccounts>

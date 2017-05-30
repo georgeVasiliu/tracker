@@ -1,12 +1,14 @@
 package request;
 
 import command.Command;
+import local.LocalManager;
 
 /**
  * Created by george on 5/15/17.
  */
 public class ProjectHandler extends RequestHandler{
     private static ProjectHandler projectHandler;
+    public static LocalManager localManager = LocalManager.getLocalManager();
 
 
     private ProjectHandler(){
@@ -27,4 +29,5 @@ public class ProjectHandler extends RequestHandler{
             command.execute(this);
         }
     }
+
 }

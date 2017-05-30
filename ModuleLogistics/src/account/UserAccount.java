@@ -147,6 +147,8 @@ public class UserAccount {
     }
 
 
+    public StringProperty getUserLocalFolderProperty() { return localFolder ;}
+    public StringProperty getUserProejctsFolderProperty() { return projectsFolder;}
     public StringProperty getUserNameProperty() {
         return userName;
     }
@@ -170,5 +172,6 @@ public class UserAccount {
     public IntegerProperty getUserPhoneNumberProperty() {
         return userPhoneNumber;
     }
+
 
 }

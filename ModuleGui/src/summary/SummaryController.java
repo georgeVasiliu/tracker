@@ -1,88 +1,58 @@
 package summary;
 
 import account.UserAccount;
+import command.local.GetLocalProjectsCommand;
 import createProject.CreateProjectController;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import local.LocalManager;
 import logger.Log;
 import main.MainApp;
+import project.Project;
+import projectSummary.ProjectSummaryController;
+import request.Delegator;
+import request.RequestHandler;
+import response.Receiver;
+import response.Response;
+import response.ResponseManager;
 
- import java.io.IOException;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by g0dzax on 5/26/2017.
  */
-public class SummaryController {
+public class SummaryController implements Receiver {
+
 
     @FXML
-    private ChoiceBox<String> stringChoiceBox;
+    private SplitPane splitPane;
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     private Label currentUserAccountName;
     @FXML
     private ImageView currentUserImageView;
     @FXML
-    private ListView<String> listView;
+    private ListView<Project> listView;
 
-    private ObservableList<String> choiceBoxItems;
     private UserAccount currentUser;
-    private ObservableList<String> listViewItems;
+    private ObservableList<Project> currentUserProjects;
     private MainApp mainApp;
     private Stage dialogStage;
 
-    public SummaryController() {
-        System.out.println("First, created the controller");
-    }
-
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
-    }
-
-
-    @FXML
-    private void initialize() {
-        listViewItems = FXCollections.observableArrayList("Create a new project");
-        choiceBoxItems = FXCollections.observableArrayList("Logout");
-        mainApp = MainApp.getMainAppInstance();
-        currentUser = LocalManager.getLocalManager().getCurrentUser();
-        stringChoiceBox.setItems(choiceBoxItems);
-        stringChoiceBox.getSelectionModel()
-                .selectedItemProperty()
-                .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> Log.printLog(Log.LOG_TYPE_INFO, "Performing logout."));
-        currentUserAccountName.setText(currentUser.getUserFirstName());
-        listView.setItems(listViewItems);
-        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        //set currentUser icon if it has one selected
-        //initialize the list view with the projects that belong to the user logged in
-        //after initializing the list view, we want to add one more item to it, that will be named "Create new project"
-
-
-    }
-
-
-    @FXML
-    private void listItemClicked() {
-        if (listView.getSelectionModel().getSelectedItem().contains("new")) {
-            // bring up the create a new project list
-            System.out.println("Clicked on new project item ! " + listView.getSelectionModel().getSelectedItem());
-            loadCreateProjectDialogStage();
-        } else {
-            // populate the statistics with the information held in the project
-            System.out.println("Clicked on item ! " + listView.getSelectionModel().getSelectedItem());
-
-        }
     }
 
     private void loadCreateProjectDialogStage() {
@@ -101,9 +71,79 @@ public class SummaryController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    private void setProjectSummary(Project project) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(ProjectSummaryController.class.getResource("ProjectSummary.fxml"));
+        try {
+            AnchorPane projectSummary = fxmlLoader.load();
+            ProjectSummaryController projectSummaryController = fxmlLoader.getController();
+            projectSummaryController.setProject(project);
+            anchorPane.getChildren().clear();
+            anchorPane.getChildren().addAll(projectSummary);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
+    @FXML
+    private void initialize() {
+        mainApp = MainApp.getMainAppInstance();
+        currentUser = LocalManager.getLocalManager().getCurrentUser();
+        currentUserAccountName.setText(currentUser.getUserFirstName());
+        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        listView.setCellFactory(new Callback<ListView<Project>, ListCell<Project>>() {
+            @Override
+            public ListCell<Project> call(ListView<Project> param) {
+                ListCell<Project> cell = new ListCell<Project>() {
+                    @Override
+                    protected void updateItem(Project project, boolean empty) {
+                        super.updateItem(project, empty);
+                        if (project != null) {
+                            setText(project.getProjectName());
+                        }
+                    }
+                };
+                cell.setOnMousePressed((MouseEvent event) -> {
+                    if (cell.isEmpty()) {
+                        event.consume();
+                        listView.getSelectionModel().clearSelection();
+                    } else {
+                        if (cell.getItem().getProjectName().equals("Create a new project")) {
+                            loadCreateProjectDialogStage();
+                        } else {
+                            setProjectSummary(cell.getItem());
+                        }
 
+                    }
+                });
+                return cell;
+            }
+        });
+        ResponseManager.addReceiver(this);
+        Delegator.getDelegator().sendRequest(RequestHandler.RequestType.PROJECT, new GetLocalProjectsCommand());
+    }
+
+
+    @FXML
+    private void handleLogout() {
+        Log.printLog(Log.LOG_TYPE_INFO, "Logging out of the current user...");
+    }
+
+
+    @Override
+    public void update(Response response) {
+        List<Project> projectList = response.getProjects();
+        currentUserProjects = FXCollections.observableArrayList(projectList);
+        currentUserProjects.add(new Project("Create a new project", "", null));
+        listView.setItems(currentUserProjects);
+    }
+
+    @Override
+    public String getReceiverType() {
+        return "ListProject";
+    }
 }

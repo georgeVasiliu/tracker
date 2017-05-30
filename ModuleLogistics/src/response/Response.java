@@ -1,5 +1,7 @@
 package response;
 
+import project.Project;
+
 import java.util.List;
 
 /**
@@ -9,23 +11,27 @@ public class Response {
 
     private Object contents;
 
-    public Response(Object contents){
+    public Response(Object contents) {
         this.contents = contents;
     }
 
-    public String getString(){
+    public String getString() {
         return (String) contents;
     }
 
-    public int getInt(){
+    public int getInt() {
         return (int) contents;
     }
 
-    public List<String> getListString(){
+    public List<String> getListString() {
         return (List<String>) contents;
     }
 
-    public List<Integer> getListInteger(){
+    public List<Integer> getListInteger() {
         return (List<Integer>) contents;
+    }
+
+    public List<Project> getProjects() {
+        return (List<Project>) contents;
     }
 }
