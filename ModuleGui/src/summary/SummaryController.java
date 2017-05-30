@@ -55,6 +55,7 @@ public class SummaryController implements Receiver {
         this.dialogStage = dialogStage;
     }
 
+
     private void loadCreateProjectDialogStage() {
         Stage createProjectStage = new Stage();
         createProjectStage.initModality(Modality.APPLICATION_MODAL);
@@ -88,6 +89,7 @@ public class SummaryController implements Receiver {
         }
 
     }
+
 
     @FXML
     private void initialize() {
