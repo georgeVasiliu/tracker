@@ -1,9 +1,15 @@
 package projectSummary;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.stage.Stage;
 import project.Project;
+import viewProjectObjectives.ProjectObjectivesController;
+
+import java.io.IOException;
 
 /**
  * Created by george on 5/30/17.
@@ -47,6 +53,21 @@ public class ProjectSummaryController {
 
     @FXML
     private void handleViewObjectives() {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(ProjectObjectivesController.class.getResource("ProjectObjectives.fxml"));
+
+        try {
+            SplitPane splitPane = fxmlLoader.load();
+            ProjectObjectivesController projectObjectivesController = fxmlLoader.getController();
+            projectObjectivesController.setProject(project);
+            Stage dialogStage = new Stage();
+            Scene scene = new Scene(splitPane);
+            projectObjectivesController.setDialogStage(dialogStage);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -157,10 +157,8 @@ public class LocalManager implements Dispatcher {
 
             }
         }
+        Log.printLog(Log.LOG_TYPE_INFO, "SENT A LIST WITH SIZE : " + projects.size());
         sendResponse(new Response(projects), "ListProject");
-
-
-
     }
 
     public void grabObjectives() {

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <userAccounts>
     <userAccount>
-        <localFolder>C:\Users\g0dzax\Documents\Tracker\tracker\ModuleLogistics\out\artifacts\ModuleGui\geod8c</localFolder>
-        <projectsFolder>C:\Users\g0dzax\Documents\Tracker\tracker\ModuleLogistics\out\artifacts\ModuleGui\geod8c\Projects</projectsFolder>
-        <userAddress>Miroslava, Str.Padurii, nr.20</userAddress>
-        <userCity>Iasi</userCity>
-        <userCountry>Romania</userCountry>
-        <userFirstName>Vasiliu</userFirstName>
-        <userLastName>George</userLastName>
+        <localFolder>/home/george/IdeaProjects/tracker/ModuleLogistics/out/artifacts/ModuleGui/geod8c</localFolder>
+        <projectsFolder>/home/george/IdeaProjects/tracker/ModuleLogistics/out/artifacts/ModuleGui/geod8c/Projects</projectsFolder>
+        <userAddress>asdf</userAddress>
+        <userCity>asdf</userCity>
+        <userCountry>asdf</userCountry>
+        <userFirstName>asdf</userFirstName>
+        <userLastName>asdf</userLastName>
         <userName>george</userName>
         <userPassword>9fd8de5fc2a7c2c0d469b2fff1afde4e5def37ba</userPassword>
-        <userPhoneNumber>726666393</userPhoneNumber>
+        <userPhoneNumber>123</userPhoneNumber>
     </userAccount>
 </userAccounts>

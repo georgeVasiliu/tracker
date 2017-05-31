@@ -1,7 +1,6 @@
 package main;
 
 import createAccount.CreateAccountController;
-import createProject.CreateProjectController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

@@ -25,6 +25,9 @@ public class Task {
     private Date deadline;
     private STATUS status;
 
+    public Task(){
+
+    }
     public History getHistory() {
         return history;
     }
@@ -121,7 +124,7 @@ public class Task {
         this.deadline = deadline;
     }
 
-    private enum STATUS {INPROGRESS, DONE, CANCELED, INREVIEW,}
+    public enum STATUS {INPROGRESS, DONE, CANCELED, INREVIEW,}
 
 
 }
